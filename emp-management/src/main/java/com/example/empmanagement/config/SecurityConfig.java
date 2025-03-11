@@ -29,13 +29,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/employees/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .anyRequest().authenticated()  // All other requests require authentication
                 )
                 .headers(headers -> headers
                         .frameOptions(frameOptions -> frameOptions.disable())
                 )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Use stateless session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
