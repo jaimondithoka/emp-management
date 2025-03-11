@@ -70,5 +70,5 @@ If you encounter errors while using the API:
 401 Unauthorized: Your login details might be incorrect, or the token may have expired. Try logging in again.
 404 Not Found: The endpoint or employee record you are trying to access does not exist.
 Final Notes
-This project uses an in-memory H2 database, so all data will be lost when you restart the application. If you want to use a permanent database, update the configuration in application.properties.
+
 
